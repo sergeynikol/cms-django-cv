@@ -182,7 +182,8 @@ if not DEBUG:
 LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
-    ('en', 'English'),
+
+    ('ru'),
 ]
 
 TIME_ZONE = 'UTC'

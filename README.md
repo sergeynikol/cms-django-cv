@@ -1,24 +1,24 @@
-![Python application](https://github.com/django-cms/django-cms-quickstart/workflows/Python%20application/badge.svg?branch=main)
+![Приложение Python](https://github.com/sergeynikol/CMS_django.git)
 
-# django CMS quickstart
+# быстрый запуск CMS django
 
-A Dockerised django CMS project, ready to deploy on [Divio](https://www.divio.com/) or another Docker-based cloud platform, and run locally in Docker on your own machine.
+Докеризованный проект django CMS, готовый к развертыванию на [Divio](https://www.divio.com/) или другой облачной платформе на основе Docker, и запуск локально в Docker на вашем собственном компьютере.
 
-This version uses Python 3.9 running and the most up-to-date versions of Django 3.2 and django CMS 3.11.
+В этой версии используется работающий Python 3.9 и самые последние версии Django 3.2 и django CMS 3.11.
 
-This project is endorsed by the [django CMS Association](https://www.django-cms.org/en/about-us/). That means that it is officially accepted by the dCA as being in line with our roadmap vision and development/plugin policy. Join us on [Slack](https://www.django-cms.org/slack/) for more information or questions. 
+Этот проект одобрен [Ассоциацией django CMS] (https://www.django-cms.org/en/about-us/). Это означает, что он официально принят DCA как соответствующий нашему видению дорожной карты и политике разработки/плагинов. Присоединяйтесь к нам в [Slack](https://www.django-cms.org/slack/) для получения дополнительной информации или вопросов.
 
-## Installation
+## Монтаж
 
-You need to have docker installed on your system to run this project.
+Для запуска этого проекта в вашей системе должен быть установлен докер.
 
-- [Install Docker](https://docs.docker.com/engine/install/) here.
-- If you have not used docker in the past, please read this [introduction on docker](https://docs.docker.com/get-started/) here.
+- [Установить Docker](https://docs.docker.com/engine/install/) здесь.
+- Если вы раньше не использовали докер, прочтите это [введение в докер](https://docs.docker.com/get-started/) здесь.
 
-## Try it
+## Попытайся
 
 ```bash
-git clone git@github.com:django-cms/django-cms-quickstart.git
+git clone https://github.com/sergeynikol/CMS_django.git
 cd django-cms-quickstart
 docker compose build web
 docker compose up -d database_default
@@ -27,53 +27,49 @@ docker compose run web python manage.py createsuperuser
 docker compose up -d
 ```
 
-Then open http://django-cms-quickstart.127.0.0.1.nip.io:8000 (or just http://127.0.0.1:8000) in your browser.
+Затем откройте в браузере http://django-cms-quickstart.127.0.0.1.nip.io:8000 (или просто http://127.0.0.1:8000).
 
-Note: Since Compose V2, `docker-compose` is now included inside docker. For more information, checkout the [Compose V2](https://docs.docker.com/compose/cli-command/) Documentation.
+Примечание. Начиная с Compose V2, `docker-compose` теперь включен в docker. Для получения дополнительной информации ознакомьтесь с документацией [Compose V2](https://docs.docker.com/compose/cli-command/).
 
-## Customising the project
+## Настройка проекта
 
-This project is ready-to-go without making any changes at all, but also gives you some options.
+Этот проект готов к работе без внесения каких-либо изменений, но также дает вам некоторые варианты.
 
-As-is, it will include a number of useful django CMS plugins and Bootstrap 5 for the frontend. You don't have to use
-these; they're optional. If you don't want to use them, read through the `settings.py` and `requirements.txt` files to
-see sections that can be removed - in each case, the section is noted with a comment containing the word 'optional'.
+Как есть, он будет включать ряд полезных плагинов django CMS и Bootstrap 5 для внешнего интерфейса. Вам не нужно использовать
+эти; они необязательны. Если вы не хотите их использовать, прочитайте файлы `settings.py` и `requirements.txt`, чтобы
+см. разделы, которые можно удалить — в каждом случае раздел отмечается комментарием, содержащим слово «необязательный».
 
-Options are also available for using Postgres/MySQL, uWSGI/Gunicorn/Guvicorn, etc.
+Также доступны варианты для использования Postgres/MySQL, uWSGI/Gunicorn/Guvicorn и т. д.
 
-#### Updating requirements
+#### Обновление требований
 
-The project uses a 2 step approach, freezing all dependencies with pip-tools. Read more about how to handle it here: https://blog.typodrive.com/2020/02/04/always-freeze-requirements-with-pip-compile-to-avoid-unpleasant-surprises/
+В проекте используется двухэтапный подход, замораживающий все зависимости с помощью pip-tools. Узнайте больше о том, как с этим справиться, здесь: https://blog.typodrive.com/2020/02/04/always-freeze-requirements-with-pip-compile-to-avoid-unpleasant-surprises/
 
-## Features
+## Функции
 
-### Static Files with Whitenoise
+### Статические файлы с белым шумом
 
-This quickstart demo has a cloud-ready static files setup via django-whitenoise.
+Эта демонстрация быстрого запуска содержит готовые к облаку статические файлы, настроенные с помощью django-whitenoise.
 
-In the containerized cloud the application is not served by a web server like nginx but directly through uwsgi. django-whitenoise is the glue that's needed to serve static files in your application directly through uwsgi.
+В контейнерном облаке приложение обслуживается не веб-сервером, таким как nginx, а напрямую через uwsgi. django-whitenoise — это клей, необходимый для обслуживания статических файлов в вашем приложении напрямую через uwsgi.
 
-See the django-whitenoise settings in settings.py and the `quickstart/templates/whitenoise-static-files-demo.html` demo page template that serves a static file.
-
-## Contribution
-
-Here is the official django CMS repository: [https://github.com/django-cms/django-cms-quickstart/](https://github.com/django-cms/django-cms-quickstart/).
+См. настройки django-whitenoise в settings.py и шаблон демонстрационной страницы `quickstart/templates/whitenoise-static-files-demo.html`, который обслуживает статический файл.
 
 
-## Deployment
+## Развертывание
 
-Note that this is just a demo project to get you started. If you want a full production ready site with all the bells and whistles we recommend you have a look at https://github.com/django-cms/djangocms-template instead.
+Обратите внимание, что это всего лишь демонстрационный проект, который поможет вам начать работу. Если вам нужен полностью готовый сайт со всеми прибамбасами, мы рекомендуем вместо этого взглянуть на https://github.com/django-cms/djangocms-template.
 
-#### Env variables
-- to deploy this project in testing mode (recommended) set the environment variable `DEBUG` to `True` in your hosting environment. 
-- For production environment (if `DEBUG` is false) django requires you to whitelist the domain. Set the env var `DOMAIN` to the host, i.e. `www.domain.com` or `*.domain.com`.
-- If you want the media hosted on S3 set the `DEFAULT_FILE_STORAGE` variable accordingly.
+#### Переменные окружения
+- чтобы развернуть этот проект в тестовом режиме (рекомендуется), установите для переменной среды `DEBUG` значение `True` в вашей среде хостинга.
+- Для производственной среды (если `DEBUG` имеет значение false) django требует, чтобы вы добавили домен в белый список. Установите env var `DOMAIN` на хост, то есть `www.domain.com` или `*.domain.com`.
+- Если вы хотите, чтобы носитель размещался на S3, установите соответствующую переменную `DEFAULT_FILE_STORAGE`.
 
-#### Deployment Commands
-Configure your hosting environment to run the following commands on every deployment:
-- `./manage.py migrate`
+#### Команды развертывания
+Настройте среду размещения для выполнения следующих команд при каждом развертывании:
+- `./manage.py перенести`
 
 
-#### Divio Deployment
+#### Развертывание Дивио
 
-divio.com is a cloud hosting platform optimized for django web applications. It's the quickest way to deploy this project. Here is a [video tutorial](https://www.youtube.com/watch?v=O2g5Wfoyp7Q) and a [description of the deployment steps](https://github.com/django-cms/djangocms-template/blob/mco-standalone/docs/deployment-divio.md#divio-project-setup) that are mostly applicable for this quickstart project.
+divio.com — это платформа облачного хостинга, оптимизированная для веб-приложений django. Это самый быстрый способ развернуть этот проект. Вот [видеоурок](https://www.youtube.com/watch?v=O2g5Wfoyp7Q) и [описание шагов развертывания](https://github.com/django-cms/djangocms-template/ blob/mco-standalone/docs/deployment-divio.md#divio-project-setup), которые в основном применимы для этого краткого проекта.
