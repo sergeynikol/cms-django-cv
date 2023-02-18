@@ -216,3 +216,9 @@ MEDIA_ROOT = os.path.join('/data/media/')
 
 
 SITE_ID = 1
+ 
+
+
+# dark mode 
+CMS_COLOR_SCHEME_TOGGLE = True 
+

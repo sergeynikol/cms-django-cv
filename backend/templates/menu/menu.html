@@ -1,13 +1,52 @@
-{% load i18n menu_tags cache %}{% spaceless %}
-    {% for child in children %}
-        <li class="nav-item text-center {% if child.ancestor %}ancestor{% endif %}{% if child.children %} dropdown{% endif %}">
-            {% if child.children %}<a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" href="{{ child.get_absolute_url }}" id="menu-{{ child.id|safe }}">{{ child.get_menu_title }}</a>
-                <div class="dropdown-menu" aria-labelledby="menu-{{ child.ancestor.id|safe }}">
-                    {% show_menu from_level to_level extra_inactive extra_active "menu/dropdown.html" "" "" child %}
-                </div>
-            {% else %}
-                <a class="nav-link{% if child.selected %} active{% endif %}" href="{{ child.get_absolute_url }}"><span>{{ child.get_menu_title }}</span></a>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endspaceless %}
+{% load cms_tags menu_tags sekizai_tags static i18n %}
+<div id="colorlib-page">
+    <div class="container-wrap">
+    <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+    <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+        <div class="text-center">
+            <div class="author-img" style="background-image: url({% static 'images/about.jpg'%});"></div>
+            <h1 id="colorlib-logo"><a href="index.html">Siarhei Nikalayeu</a></h1>
+            <span class="position"><a href="#">Python developer</a> in Georgia</span>
+        </div>
+        <nav id="colorlib-main-menu" role="navigation" class="navbar">
+            <div id="navbar" class="collapse">
+                <ul>
+                    {% comment %} {% block menubar %}{% show_menu 0 100 0 100 'menu/menu.html' %}{% endblock %} {% endcomment %}
+                    <li class="active"><a href="#" data-nav-section="home">Home</a></li>
+                    <li><a href="#" data-nav-section="about">About</a></li>
+                    <li><a href="#" data-nav-section="services">Services</a></li>
+                    <li><a href="#" data-nav-section="skills">Skills</a></li>
+                    <li><a href="#" data-nav-section="education">Education</a></li>
+                    <li><a href="#" data-nav-section="experience">Experience</a></li>
+                    <li><a href="#" data-nav-section="work">Work</a></li>
+                    <li><a href="#" data-nav-section="blog">Blog</a></li>
+                    <li><a href="#" data-nav-section="contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="colorlib-footer">
+            <div class="colorlib-text">
+                <p><a href="tel://">+995 599 643 816</a></p>
+            </div>
+            
+            <ul>
+                <li><a href="https://www.facebook.com/"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://t.me/sergonikola"><i class="icon-telegram"></i></a></li>
+                <li><a href="https://www.instagram.com/"><i class="icon-instagram"></i></a></li>
+                <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                
+                
+            </ul>
+        </div>
+        <div class="switch_dark_bt">
+            <ul>
+               <li>
+                  <button class="dark-button"><i class="icon-moon-o"></i>Dark</button>
+               </li>
+               <li>
+                  <button class="light-button" hidden="hidden"><i class="icon-sun"></i>Light</button>
+               </li>
+            </ul>
+         </div>
+    </aside>

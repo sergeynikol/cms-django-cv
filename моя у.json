@@ -1,0 +1,23 @@
+// Чтобы создать файл requirements.txt с помощью pip-compile, необходимо выполнить следующие шаги:
+
+// Установите pip-tools с помощью команды:
+Copy code
+pip install pip-tools
+
+// Создайте файл requirements.in, в котором перечислите все необходимые зависимости (библиотеки, модули и т.д.). Например:
+
+Copy code
+requests
+Django
+
+// Запустите pip-compile с файлом requirements.in в качестве входного файла, чтобы сгенерировать файл requirements.txt. Например:
+python
+Copy code
+pip-compile requirements.in
+
+// Файл requirements.txt будет создан в той же директории, что и requirements.in. Файл requirements.txt будет содержать все зависимости из requirements.in и их зависимости с конкретными версиями.
+// (Опционально) Если вы хотите установить зависимости из requirements.txt, выполните следующую команду:
+
+Copy code
+pip install -r requirements.txt
+// Эта команда установит все зависимости, перечисленные в requirements.txt в ваше виртуальное окружение.
