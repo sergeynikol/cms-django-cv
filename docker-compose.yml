@@ -1,40 +1,40 @@
-version: "3"
+# This docker-compose.yml file is used to set up your project in the local
+# development environment *only*. It is *not* used in deployment to our cloud
+# servers, and has no effect whatsoever in cloud deployments.
+#
+# See our Developer Handbook for more information:
+# http://docs.divio.com/en/latest/reference/docker-docker-compose.html
+version: "2"
 
 services:
+  # The web container is an instance of exactly the same Docker image as your
+  # Cloud application container.
   web:
-    # the application's web service (container) will use an image based on our Dockerfile
-    build: .
-    # map the internal port 80 to port 8000 on the host
+    build: "."
+    links:
+      - "db:postgres"
+    # Change the port if you'd like to expose your project locally on a
+    # different port, for example if you already use port 8000 for
+    # something else.
     ports:
       - "8000:80"
-    # map the host directory to app (which allows us to see and edit files inside the container)
     volumes:
       - ".:/app:rw"
       - "./data:/data:rw"
-    # the default command to run whenever the container is launched
+    # The default command that the container starts with. If you'd like to run
+    # the project locally in Live configuration, you will need to change this.
+    # See https://docs.divio.com/en/latest/how-to/local-in-live-configuration/
     command: python manage.py runserver 0.0.0.0:80
-    # the URL 'postgres' or 'mysql' will point to the application's db service
-    networks:
-      - djangocmsnet
-
+    # Add any environment variables your project needs to the .env-local file.
+    # See https://docs.divio.com/en/latest/reference/configuration-environment-variables.html.
     env_file: .env-local
 
-  database_default:
-    # Select one of the following db configurations for the database
+  # On the Cloud, your database runs on a dedicated cluster. Locally, we
+  # replicate it in a Docker container called "db".
+  db:
     image: postgres:13.5-alpine
-    ports:
-      - "5432:5432/tcp"  # allow your local dev env to connect to the db
     environment:
       POSTGRES_DB: "db"
-      POSTGRES_PASSWORD: "password"
       POSTGRES_HOST_AUTH_METHOD: "trust"
-      SERVICE_MANAGER: "fsm-postgres"
-
-    networks:
-      - djangocmsnet
-
     volumes:
       - ".:/app:rw"
-
-networks:
-  djangocmsnet:
